@@ -29,8 +29,6 @@ This is an undergraduate course repository of Machine Learning Methods and Appli
 
 ## Project &#x1F680;
 
-[Instructions]()
-
 [Projects from 2024/25 Spring](https://github.com/mcavs/Course_DataVisualization/tree/main/Projects/2024-25Spring#readme)
 
 [Projects from 2023/24 Spring](https://github.com/mcavs/Course_DataVisualization/tree/main/Projects/2023-24Spring#readme)
