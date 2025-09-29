@@ -31,11 +31,15 @@ This is an undergraduate course repository of Machine Learning Methods and Appli
 
 [Instructions]()
 
-[Projects from 2023/24 Fall](https://github.com/mcavs/ESTUStat_2023Guz_VeriGorsellestirme/blob/main/Projeler/Posterler/Readme.md)
+[Projects from 2024/25 Spring](https://github.com/mcavs/Course_DataVisualization/tree/main/Projects/2024-25Spring#readme)
 
-[Projects from 2022/23 Fall](https://github.com/mcavs/ESTUStat_2022Guz_VeriGorsellestirme/blob/main/Projeler/Posterler/Readme.md)
+[Projects from 2023/24 Spring](https://github.com/mcavs/Course_DataVisualization/tree/main/Projects/2023-24Spring#readme)
 
-[Projects from 2021/22 Fall](https://github.com/mcavs/ESTUStat_2021Guz_VeriGorsellestirme/tree/main/Projeler)
+[Projects from 2023/24 Fall](https://github.com/mcavs/Course_DataVisualization/tree/main/Projects/2023-24Fall#readme)
+
+[Projects from 2022/23 Fall](https://github.com/mcavs/Course_DataVisualization/tree/main/Projects/2022-23Fall#readme)
+
+[Projects from 2021/22 Fall](https://github.com/mcavs/Course_DataVisualization/tree/main/Projects/2021-22Fall#readme)
 
 
 ## Contact
