@@ -13,7 +13,7 @@ This is an undergraduate course repository of Machine Learning Methods and Appli
 
 ## Teaching Materials 📂
 
-| Week | Topic                                  | Notes                                                                                                    | Lab                   |
+| Week | Topic                                  | Notes :uk:                                                                                                   | Lab                   |
 |------|----------------------------------------|----------------------------------------------------------------------------------------------------------|-----------------------|
 | 1    | Introduction                           | 📖 [Notes](https://github.com/mcavs/Course_DataVisualization/blob/main/LectureNotes/DataViz_Week1.pdf)   |                       |                  
 | 2    | Visual Aesthetics                      | 📖 [Notes](https://github.com/mcavs/Course_DataVisualization/blob/main/LectureNotes/DataViz_Week2.pdf)   |                       |
