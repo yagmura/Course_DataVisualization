@@ -13,18 +13,18 @@ This is an undergraduate course repository of Machine Learning Methods and Appli
 
 ## Teaching Materials 📂
 
-| Week | Topic                                  | Notes :uk:                                                                                                   | Lab                   |
-|------|----------------------------------------|----------------------------------------------------------------------------------------------------------|-----------------------|
-| 1    | Introduction                           | 📖 [Notes](https://github.com/mcavs/Course_DataVisualization/blob/main/LectureNotes/DataViz_Week1.pdf)   |                       |                  
-| 2    | Visual Aesthetics                      | 📖 [Notes](https://github.com/mcavs/Course_DataVisualization/blob/main/LectureNotes/DataViz_Week2.pdf)   |                       |
-| 3    | Visualizing Amounts                    | 📖 [Notes](https://github.com/mcavs/Course_DataVisualization/blob/main/LectureNotes/DataViz_Week3.pdf)   | :computer: [Lab1]()   |               
-| 4    | Visualizing Distributions              | 📖 [Notes](https://github.com/mcavs/Course_DataVisualization/blob/main/LectureNotes/DataViz_Week4.pdf)   | :computer: [Lab2]()   |        
-| 5    | Visualizing Proportions                | 📖 [Notes](https://github.com/mcavs/Course_DataVisualization/blob/main/LectureNotes/DataViz_Week5.pdf)   | :computer: [Lab3]()   |     
-| 6    | Visualizing Associations               | 📖 [Notes](https://github.com/mcavs/Course_DataVisualization/blob/main/LectureNotes/DataViz_Week6.pdf)   | :computer: [Lab4]()   |   
-| 7    | Visualizing Time Series                | 📖 [Notes](https://github.com/mcavs/Course_DataVisualization/blob/main/LectureNotes/DataViz_Week7.pdf)   | :computer: [Lab5]()   |             
-| 8    | Visualizing Geospatial Data            | 📖 [Notes](https://github.com/mcavs/Course_DataVisualization/blob/main/LectureNotes/DataViz_Week8.pdf)   | :computer: [Lab6]()   |
-| 9    | The Principles of Plot Design I        | 📖 [Notes](https://github.com/mcavs/Course_DataVisualization/blob/main/LectureNotes/DataViz_Week9.pdf)   | -                     |
-| 10   | The Principles of Plot Design II       | 📖 [Notes](https://github.com/mcavs/Course_DataVisualization/blob/main/LectureNotes/DataViz_Week10.pdf)  | -                     |
+| Week | Topic                                  | Notes :uk:                                                                                               | Notlar :tr:           | Lab                   |
+|------|----------------------------------------|----------------------------------------------------------------------------------------------------------|----|-----------------------|
+| 1    | Introduction                           | 📖 [Notes](https://github.com/mcavs/Course_DataVisualization/blob/main/LectureNotes/DataViz_Week1.pdf)   | 📖 [Notlar](https://github.com/mcavs/Course_DataVisualization/blob/main/LectureNotes/DataViz_Week1.pdf)       |                  |                  
+| 2    | Visual Aesthetics                      | 📖 [Notes](https://github.com/mcavs/Course_DataVisualization/blob/main/LectureNotes/DataViz_Week2.pdf)   | 📖 [Notlar](https://github.com/mcavs/Course_DataVisualization/blob/main/LectureNotes/DataViz_Week1.pdf)        |                 |
+| 3    | Visualizing Amounts                    | 📖 [Notes](https://github.com/mcavs/Course_DataVisualization/blob/main/LectureNotes/DataViz_Week3.pdf)   |📖 [Notlar](https://github.com/mcavs/Course_DataVisualization/blob/main/LectureNotes/DataViz_Week1.pdf)    |:computer: [Lab1]()   |               
+| 4    | Visualizing Distributions              | 📖 [Notes](https://github.com/mcavs/Course_DataVisualization/blob/main/LectureNotes/DataViz_Week4.pdf)   | 📖 [Notlar](https://github.com/mcavs/Course_DataVisualization/blob/main/LectureNotes/DataViz_Week1.pdf)   |:computer: [Lab2]()   |        
+| 5    | Visualizing Proportions                | 📖 [Notes](https://github.com/mcavs/Course_DataVisualization/blob/main/LectureNotes/DataViz_Week5.pdf)   |📖 [Notlar](https://github.com/mcavs/Course_DataVisualization/blob/main/LectureNotes/DataViz_Week1.pdf)    |:computer: [Lab3]()   |     
+| 6    | Visualizing Associations               | 📖 [Notes](https://github.com/mcavs/Course_DataVisualization/blob/main/LectureNotes/DataViz_Week6.pdf)   | 📖 [Notlar](https://github.com/mcavs/Course_DataVisualization/blob/main/LectureNotes/DataViz_Week1.pdf)   |:computer: [Lab4]()   |   
+| 7    | Visualizing Time Series                | 📖 [Notes](https://github.com/mcavs/Course_DataVisualization/blob/main/LectureNotes/DataViz_Week7.pdf)   |📖 [Notlar](https://github.com/mcavs/Course_DataVisualization/blob/main/LectureNotes/DataViz_Week1.pdf)    |:computer: [Lab5]()   |             
+| 8    | Visualizing Geospatial Data            | 📖 [Notes](https://github.com/mcavs/Course_DataVisualization/blob/main/LectureNotes/DataViz_Week8.pdf)   | 📖 [Notlar](https://github.com/mcavs/Course_DataVisualization/blob/main/LectureNotes/DataViz_Week1.pdf)   |:computer: [Lab6]()   |
+| 9    | The Principles of Plot Design I        | 📖 [Notes](https://github.com/mcavs/Course_DataVisualization/blob/main/LectureNotes/DataViz_Week9.pdf)   | 📖 [Notlar](https://github.com/mcavs/Course_DataVisualization/blob/main/LectureNotes/DataViz_Week1.pdf)   |-                     |
+| 10   | The Principles of Plot Design II       | 📖 [Notes](https://github.com/mcavs/Course_DataVisualization/blob/main/LectureNotes/DataViz_Week10.pdf)  |📖 [Notlar](https://github.com/mcavs/Course_DataVisualization/blob/main/LectureNotes/DataViz_Week1.pdf)    |-                     |
 
 
 ## Project &#x1F680;
