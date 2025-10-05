@@ -1,0 +1,353 @@
+---
+title: "Visualizing Amounts"
+author: "Mustafa Cavus"
+date: "2025-10-05"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r message=FALSE, warning=FALSE} 
+# You can hide the messages and warnings when installing a package.
+# This is important when installing a package to avoid unnecessary installation 
+# messages and ensure that the document contains only the necessary information.
+
+install.packages("ggplot2") # to use ggplot visualization tools
+install.packages("dplyr") # to use the new pipe (|>) operator and perform data 
+# manipulation operations
+install.packages("tidyverse")
+library(ggplot2)
+library(dplyr)
+library(tidyverse)
+```
+
+
+# How to draw a barplot
+
+Let's create a data abject called `movie`. It consists two variables `name` and 
+`revenue`. The variables are nominal and numeric, respectively. It means we can
+visualize the revenues of these movies by using a barplot.
+
+```{r}
+movie <- data.frame(name = c("Star Wars",
+                             "Jumanji",
+                             "Pitch Perfect 3",
+                             "Greatest Showman",
+                             "Ferdinand"),
+                    revenue = c(71565498,
+                                36169328,
+                                19928525,
+                                8805843,
+                                7316746))
+```
+
+To draw a barplot, we need to create two layers: the first one indicates the 
+data, and the variables that we want to put to the axes. Then we must specify
+the geom layer which shows the plot type: `geom_bar()`.
+
+```{r eval=FALSE, include=FALSE}
+ggplot(movie, aes(x = name, y = revenue)) +
+  geom_bar()
+```
+
+The code above returns an error because we did not specify the stat argument 
+in the `geom_bar()` layer. The stat argument is typically used with the options 
+`identity` or `count`.
+
+```{r}
+ggplot(movie, aes(x = name, y = revenue)) +
+  geom_bar(stat = "identity")
+```
+
+In the plot above, you will notice that the values on the y-axis are in a 
+different format. For example, 2e+07 is converted to decimal form as 2 x 10^7. 
+Converting all values on the axis to decimal form allows us to obtain a more 
+readable plot.
+
+```{r}
+ggplot(movie, aes(x = name, y = revenue)) +
+  geom_bar(stat = "identity") + 
+  scale_y_continuous(labels = scales::comma)
+```
+
+Another step we need to take for this plot to be more easily readable is to 
+sort the bars in  ascending or descending order based on their lengths. We can 
+decide which option to choose according to the content of the message.
+
+```{r}
+ggplot(movie, aes(x = reorder(name, -revenue), y = revenue)) +
+  geom_bar(stat = "identity") + 
+  scale_y_continuous(labels = scales::comma)
+```
+
+You will see that the `reorder()` function we use to sort the bars causes an 
+error message for the solution we use to change the format of the label values 
+on the y-axis. To solve this problem, you can use the solution below:
+
+```{r}
+ggplot(movie, aes(x = reorder(name, +revenue), y = revenue)) +
+  geom_bar(stat = "identity") +
+  scale_y_continuous(labels = function(x) format(x, scientific = FALSE))
+```
+
+As you can see, there can be multiple solutions to a problem that arises, and 
+in some cases, not all solutions may work. When you encounter such issues, 
+remember that your first resource should be Google or stackoverflow.com.
+
+The last step we need to take for this plot is to arrange the axis titles and 
+add the plot title.
+
+```{r}
+ggplot(movie, aes(x = reorder(name, +revenue), y = revenue)) +
+  geom_bar(stat = "identity") +
+  scale_y_continuous(labels = function(x) format(x, scientific = FALSE)) + 
+  labs(x       = "Movie",
+       y       = "Revenue ($)",
+       title   = "Highest Grossing Movies from December 22 to 24, 2017",
+       caption = "Data source: Box Office Mojo") +
+  theme_minimal()
+```
+
+One of the main issues you may encounter in such plots is that the bar labels 
+on the axis containing the categorical variable can be very long, leading to 
+overlapping and making them difficult to read.A common but poor practice to 
+solve this problem is to rotate the bar labels by 45 or 90 degrees, 
+which actually makes them harder to read.
+
+```{r}
+ggplot(movie, aes(x = reorder(name, +revenue), y = revenue)) +
+  geom_bar(stat = "identity") +
+  scale_y_continuous(labels = function(x) format(x, scientific = FALSE)) + 
+  labs(x       = "Movie",
+       y       = "Revenue ($)",
+       title   = "Highest Grossing Movies from December 22 to 24, 2017",
+       caption = "Data source: Box Office Mojo") + 
+  theme_bw() + 
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)) 
+```
+
+Instead, switching the positions of the axes is a better solution to avoid 
+making the plot harder to read.
+
+```{r}
+ggplot(movie, aes(x = reorder(name, +revenue), y = revenue)) +
+  geom_bar(stat = "identity") +
+  scale_y_continuous(labels = function(x) format(x, scientific = FALSE)) + 
+  labs(x       = "",
+       y       = "Revenue ($)",
+       title   = "Highest Grossing Movies from December 22 to 24, 2017",
+       caption = "Data source: Box Office Mojo") + 
+  coord_flip() +
+  theme(text = element_text(size = 20))
+```
+
+
+# How to draw a grouped barplot
+
+Visualization of the `US_median_income` dataset found on page 49 of Wilke's 
+book. The book’s source code and the dataset is hosted on GitHub, 
+https://github.com/clauswilke/dviz.supp/tree/master/data.
+Please first download the data, and follow the steps below to work on a dataset
+you want to call the outside of the environment:
+
+* (If you use local RStudio skip this step) Upload the data file your 
+environment using the "upload" button on the files window.
+* The file will appear within files, then left click and load the data to 
+your environment, and follow the steps below.
+
+```{r}
+load("/cloud/project/US_income_age.rda")
+```
+
+You need to convert the continuous `age` variable in the `US_income_age` 
+dataset into a categorical variable. For this, you can use the `within()` 
+function.
+
+```{r}
+US_age_cat <- within(US_income_age, {   
+  age.cat <- NA 
+  age.cat[25 <= age & age <= 34] <- "25-34"
+  age.cat[35 <= age & age <= 44] <- "35-44"
+  age.cat[45 <= age & age <= 54] <- "45-54"
+  age.cat[55 <= age & age <= 64] <- "55-64"
+  age.cat[65 <= age & age <= 74] <- "65-74"})
+
+final_US_income_age <- US_age_cat |> 
+  drop_na() |> 
+  group_by(age.cat) |> 
+  summarise(moi = median(income))
+
+ggplot(final_US_income_age, aes(x = age.cat, y = moi)) + 
+  geom_bar(stat = "identity")
+```
+
+If we try to draw the plot above without using the `drop_na()` function while 
+preparing the data, that is, without excluding missing observation values, 
+you will see a bar labeled NA on the x-axis.
+
+We need to make a few adjustments to the plot to give it its final form:
+
+```{r}
+ggplot(final_US_income_age, aes(x = age.cat, y = moi)) + 
+  geom_bar(stat = "identity") + 
+  labs(x       = "Age",
+       y       = "Median Income ($)",
+       title   = "2016 Median Income by Age Ranges of American Households",
+       caption = "Data source: US Census Bureau (https://github.com/clauswilke/dviz.supp/blob/master/data/US_income_age.rda)") + 
+  theme_bw()
+```
+
+If we try to sort the bars in the plot above in ascending or descending order 
+based on the values they represent, it becomes difficult to interpret the 
+income changes based on age, which we have transformed into an ordered 
+categorical variable. Drawing conclusions about income changes based on the 
+increase or decrease in age becomes challenging. However, this situation may 
+not always hold true. Even though the relevant variable is ordered and 
+categorical, we can perform the sorting operation based on the message we want 
+to convey, contrary to its structure. I want to warn you that this situation 
+is not something we will encounter very frequently in practice.
+
+```{r}
+ggplot(final_US_income_age, aes(x = reorder(age.cat, +moi), y = moi)) + 
+  geom_bar(stat = "identity") + 
+  labs(x       = "Age",
+       y       = "Median Income ($)",
+       title   = "2016 Median Income by Age Ranges of American Households",
+       caption = "Data source: US Census Bureau (https://github.com/clauswilke/dviz.supp/blob/master/data/US_income_age.rda)") + 
+  theme_bw()
+```
+
+Let's create a grouped bar chart using the same dataset. For this, we need to 
+prepare the data again. Let's focus on some states for the grouping. We can 
+select the observations corresponding to the states using the `filter()` 
+function, and then use `group_by()` to calculate the median income for the 
+grouped data by age and state, allowing us to access the data we will use 
+for visualization.
+
+```{r}
+final_US_income_age2 <- US_age_cat |>
+  drop_na() |> 
+  filter(state %in% c("Michigan", "Colorado", "Virginia", "Texas")) |>
+  group_by(age.cat, state) |> 
+  summarise(moi = median(income))
+```
+
+To draw a grouped bar chart, we need to use two arguments. In `aes()`, we 
+should specify the variable for grouping using the `fill` argument, and in 
+the `geom_bar()` layer, we need to set the `position` argument to the value 
+`dodge`.
+
+```{r}
+ggplot(final_US_income_age2, aes(x = age.cat, y = moi, fill = state)) + 
+  geom_bar(stat = "identity", position = "dodge") + 
+  labs(x       = "Age",
+       y       = "Median Income ($)",
+       fill    = "State",
+       title   = "2016 Median Income by Age Ranges of American Households",
+       caption = "Data source: US Census Bureau (https://github.com/clauswilke/dviz.supp/blob/master/data/US_income_age.rda)") + 
+  theme_bw()
+```
+
+We can sort the age groups in ascending or descending order using the 
+`reorder()` function.
+
+```{r}
+ggplot(final_US_income_age2, aes(x = reorder(age.cat, +moi), y = moi, fill = state)) + 
+  geom_bar(stat = "identity", position = "dodge") + 
+  labs(x       = "Age",
+       y       = "Median Income ($)",
+       fill    = "State",
+       title   = "2016 Median Income by Age Ranges of American Households",
+       caption = "Data source: US Census Bureau (https://github.com/clauswilke/dviz.supp/blob/master/data/US_income_age.rda)") + 
+  theme_bw()
+```
+
+Alternatively, you can obtain a multi-panel plot based on a desired variable 
+by using the `facet_wrap()` layer.
+
+```{r}
+ggplot(final_US_income_age2, aes(x = age.cat, y = moi)) + 
+  geom_bar(stat = "identity") + 
+  labs(x       = "Age",
+       y       = "Median Income ($)",
+       fill    = "State",
+       title   = "2016 Median Income by Age Ranges of American Households",
+       caption = "Data source: US Census Bureau (https://github.com/clauswilke/dviz.supp/blob/master/data/US_income_age.rda)") + 
+  facet_wrap(~final_US_income_age2$state) + 
+  theme_bw()
+```
+
+Let's create a stacked bar plot using the same dataset. Here, we can use the 
+dataset we prepared for the grouped bar plot: The only different step we need 
+to take to draw the plot is to specify the 'position' argument in the 
+`geom_bar()` layer as "stack".
+
+```{r}
+ggplot(final_US_income_age2, aes(x = age.cat, y = moi, fill = state)) + 
+  geom_bar(stat = "identity", position = "stack") + 
+  labs(x       = "Age",
+       y       = "Median Income ($)",
+       fill    = "State",
+       title   = "2016 Median Income by Age Ranges of American Households",
+       caption = "Data source: US Census Bureau (https://github.com/clauswilke/dviz.supp/blob/master/data/US_income_age.rda)") + 
+  theme_bw()
+```
+
+
+# As an alternative of barplot is dotplot
+
+We will use the `US_income_age` dataset for the applications in this section.
+Let's start by drawing a bar plot before the dot plot.
+
+```{r}
+final_US_income_age3 <- US_income_age |>
+  drop_na() |>
+  group_by(state) |>
+  summarise(mean_income = mean(income))
+
+ggplot(final_US_income_age3, aes(x = mean_income, y = state)) + 
+  geom_bar(stat = "identity") + 
+  labs(x = "Mean Income ($)",
+       y = "State",
+       fill = "State",
+       title = "Average Income of American Households by State in 2016",
+       caption = "Data source: US Census Bureau (https://github.com/clauswilke/dviz.supp/blob/master/data/US_income_age.rda)") + 
+  theme_bw()
+
+```
+
+Since it is difficult to read the plot, the bars need to be sorted according 
+to the values they represent.
+
+```{r}
+ggplot(final_US_income_age3, aes(x = mean_income, y = reorder(state, +mean_income))) + 
+  geom_bar(stat = "identity") + 
+  labs(x = "Median Income ($)",
+       y = "State",
+       fill = "State",
+       title = "Average Income of American Households by State in 2016",
+       caption = "Data source: US Census Bureau (https://github.com/clauswilke/dviz.supp/blob/master/data/US_income_age.rda)") + 
+  theme_bw()
+```
+
+Despite making all the necessary adjustments we have seen so far on this plot, 
+the close values of the states and the tightly packed long bars do not create 
+a good (distinguishable) appearance. In such cases, using a dot plot instead 
+of a bar plot is a better choice. We can use the geom_point() layer to create 
+the dot plot.
+
+```{r}
+ggplot(final_US_income_age3, aes(x = mean_income, y = reorder(state, +mean_income))) + 
+  geom_point() + 
+  labs(x = "Median Income ($)",
+       y = "State",
+       fill = "State",
+       title = "Average Income of American Households by State in 2016",
+       caption = "Data source: US Census Bureau (https://github.com/clauswilke/dviz.supp/blob/master/data/US_income_age.rda)") + 
+  theme_bw()
+```
+
+
