@@ -1,6 +1,6 @@
 # Assignment 1
 
-You have 40 mins
+You have 30 mins
 
 Instructions:
 1. Please download or copy-paste the Rmd file here: https://github.com/mcavs/Course_DataVisualization/blob/main/Assignments/%231/Assignment1.Rmd
