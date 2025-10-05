@@ -10,4 +10,4 @@ Instructions:
 
 Any assignment that does not comply with the instructions will not be evaluated.
 
-Please do not use any GenAI for the last question in the assignment. 
+Please don't use any GenAI tools. 
