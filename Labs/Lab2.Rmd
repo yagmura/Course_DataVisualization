@@ -1,0 +1,155 @@
+---
+title: "Exercises on Sep 29, 2025"
+author: "Mustafa Cavus"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# 1. Introduction
+
+R Markdown is a powerful tool for combining **text, code, and results** in a single document.  
+For data analysts and data scientists, it offers several key advantages:
+
+- **Reproducibility:** Your analysis and results are generated directly from the code, ensuring they can be reproduced.  
+- **Documentation:** You can explain your workflow, methods, and insights alongside the code.  
+- **Communication:** Easily share reports with colleagues, managers, or the public in PDF, HTML, or Word formats.  
+- **Efficiency:** Inline R code allows you to dynamically display calculations, summaries, and results within your text.
+
+
+# 2. Markdown Basics
+
+You can use Markdown to add text and structure to your document.
+
+## 2.1. Headings
+
+Use # for headings.
+
+## 2.2. Emphasis
+
+italic with `*text*` → *text*
+
+bold with `**text**` → **text**
+
+## 2.3. Lists
+
+* Item 1
+* Item 2
+* Item 3
+
+## 2.4. Links and Images
+
+`[R Markdown Guide](https://rmarkdown.rstudio.com/)` → [R Markdown Guide](https://rmarkdown.rstudio.com/)
+
+
+## 2.5. Code Chunks
+
+You can insert R code inside triple backticks with `{r}`:
+
+```{r echo=FALSE}
+x <- c(1, 2, 3, 4, 5)
+mean(x)
+```
+
+backticks:
+
+* Windows: AltGr + ‘ (apostrophe key, to the left of Enter)
+
+* Mac: Option + ’ (apostrophe key)
+
+In RStudio, you can also insert a new code chunk by clicking the +c button at the right top of the editor.
+
+You can control how chunks behave using options inside the chunk. For example:
+
+```{r}
+# Code runs, but is not shown
+mean(1:10)
+```
+
+* `echo=FALSE` → hides the code, but shows the results.
+* `message=FALSE`, `warning=FALSE` → suppress messages and warnings.
+* or use the shortcut "gear icon" on the right top of the chunk.
+
+# Your Turn (5 mins)
+1. Insert a new code chunk using the RStudio shortcut.
+2. In that chunk, run summary(mtcars) but hide the code.
+
+
+## 2.7. Inline Codes
+
+If you want to display the mean of the vector `x <- c(1,2,3,4,5)` directly in your text, you can use inline
+
+The mean of the vector `x <- c(1,2,3,4,5)` is r mean(c(1,2,3,4,5)) within backticks.
+
+
+# 3. Data Visualization with {ggplot2}
+
+The **ggplot2** package is used to create graphics in R.  
+It follows the idea of building plots layer by layer.  
+
+```{r include=FALSE}
+install.packages("ggplot2") # install package
+library(ggplot2)            # load package
+```
+
+## 3.1. Basic Structure
+
+```{r}
+ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_point()
+```
+
+
+# Your Turn  (10 mins)
+1. Create a boxplot of the variable `mpg` from the `mtcars` dataset.
+2. Describe the insights you can get from the plot.
+
+
+## 3.2. Customizing Plots
+
+After creating a basic plot, you can customize it in several ways:  
+
+### 3.2.1. Adding a Title and Axis Labels
+
+```{r}
+ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_point() +
+  labs(title = "Car Weight vs. MPG",
+       x     = "Weight (1000 lbs)",
+       y     = "Miles per Gallon")
+```
+
+
+### 3.2.2. Changing the Theme
+
+```{r}
+ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_point() +
+  theme_minimal()   # alternatives: theme_gray(), theme_classic(), theme_light()
+```
+
+* `theme_minimal()` → clean background
+* `theme_classic()` → white background with axes lines
+* `theme_light()` → light gray background
+
+
+### 3.2.3. Changing the Theme
+
+```{r}
+ggplot(mtcars, aes(x = wt, y = mpg, color = factor(cyl), shape = factor(gear))) +
+  geom_point(size = 3) +
+  labs(color = "Cylinders", 
+       shape = "Gears")
+```
+
+* `color` → color points by a variable
+* `shape` → change point shape based on a variable
+* `size` → adjust point size
+
+# Your Turn  (15 mins)
+1. Create a scatter plot of `hp` vs `mpg`.
+2. Add a plot title and custom x/y labels.
+3. Change the background using your favorite one.
+4. Color the points by `cyl`.
