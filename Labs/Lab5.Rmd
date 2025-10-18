@@ -1,0 +1,141 @@
+---
+title: "Lab5"
+author: "Mustafa Cavus"
+date: "2025-10-18"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+install.packages("ggplot2")
+install.packages("ggmosaic")
+install.packages("treemapify")
+
+library(ggplot2)
+library(ggmosaic)
+library(treemapify)
+```
+
+
+# Dataset
+
+```{r}
+bridge <- data.frame(material = rep(c("iron", "wood", "steel"), each = 4),
+                     era      = rep(c("crafts", "emerging", "mature", "modern"), 3),
+                     number   = c(5, 3, 3, 0, 13, 2, 0, 0, 0, 10 , 50, 19))
+```
+
+
+# Pie chart
+
+You can draw a pie chart using the `pie()` function. However, this function only 
+works with numeric variables. If we want to visualize a categorical variable, 
+we can use the `table()` function to calculate the frequencies of the levels of 
+the categorical variable and obtain the pie chart. You can run the `table()` 
+function separately to explore its functionality.
+
+```{r}
+pie(table(bridge$material),
+    main = "Bridges for the materials")
+```
+
+You can find out how to customize pie charts here:
+http://homepages.gac.edu/~anienow2/MCS_142/R/R-piechart.html
+
+
+# Multiple pie chart
+
+First create a dataset:
+
+```{r}
+marketshare <- data.frame(percent = c(17, 18, 20, 22, 23, 20, 20, 
+                                      19, 21, 20, 23, 22, 20, 18, 17),
+                          company = rep(LETTERS[1:5], 3),
+                          year = rep(c("2015", "2016", "2017"), each = 5))
+```
+
+Then, draw multiple pie charts using `{ggplot2}`:
+
+```{r}
+ggplot(data = marketshare, aes(x      = "", 
+                               y      = percent, 
+                               group  = year, 
+                               colour = company, 
+                               fill   = company)) +
+  geom_bar(width = 1, stat = "identity") +
+  coord_polar("y", start=0) + 
+  facet_grid(.~ year) +
+  theme_void()
+```
+
+
+# Drawing a stacked bar plot
+
+```{r}
+ggplot(marketshare, aes(fill = company, 
+                        y    = percent, 
+                        x    = year)) + 
+  geom_bar(position = "stack", 
+           stat     = "identity")
+```
+
+
+# Drawing a grouped bar plot
+
+```{r}
+ggplot(marketshare, aes(fill = company, 
+                        y    = percent, 
+                        x    = year)) + 
+  geom_bar(position = "dodge", 
+           stat     = "identity")
+```
+
+
+# Drawing a mosaic plot
+
+`{ggmosaic}` package has some problem after latest update in `{ggplot2}`.
+
+You can find out how to customize mosaic plots here:
+https://cran.r-project.org/web/packages/ggmosaic/vignettes/ggmosaic.html
+
+
+# Drawing a treemap
+
+```{r}
+ggplot(bridge, aes(area     = number, 
+                   fill     = era, 
+                   label    = material,
+                   subgroup = era)) +
+  geom_treemap() +
+  geom_treemap_text(colour = "black",
+                    place  = "centre",
+                    size   = 15)
+```
+
+You can configure the treemap:
+
+```{r}
+ggplot(bridge, aes(area = number, 
+                   fill = era, 
+                   label = material,
+                   subgroup = era)) +
+  geom_treemap() +
+  geom_treemap_text(colour = "black",
+                    place = "centre",
+                    size = 15) +
+  scale_fill_brewer(palette = "Blues") +
+  geom_treemap_subgroup_border(colour = "white", 
+                               size = 5) +
+  geom_treemap_subgroup_text(place = "centre", 
+                             grow = TRUE,
+                             alpha = 0.25, 
+                             colour = "black",
+                             fontface = "italic") +
+  theme(legend.position = "none")
+```
+
+You can find out how to customize treemaps here:
+https://www.r-graph-gallery.com/treemap.html
