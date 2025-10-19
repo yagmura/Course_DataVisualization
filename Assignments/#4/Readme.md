@@ -14,4 +14,5 @@ Any assignment that does not comply with the instructions will not be evaluated.
 
 Please don't use any GenAI tools. 
 
+### For detailed project information, you can check the [Projects](https://github.com/mcavs/Course_DataVisualization/blob/main/Projects/Readme.md).
 
