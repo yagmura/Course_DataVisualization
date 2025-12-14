@@ -4,7 +4,7 @@ You are required to upload your draft poster in an appropriate size and PDF form
 
 For your end-of-term project, the poster must include the following:
 
-* Draw five different types of plots (the first three are the improved versions considering the feedback on the plots that you did in Assignment #8) for your project.
+* Draw four or five different types of plots (the first three are the improved versions considering the feedback on the plots that you did in Assignment #8) for your project.
 * Share your findings, interpreting the results.
 * Indicate the data source.
 
