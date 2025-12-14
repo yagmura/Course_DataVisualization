@@ -1,6 +1,6 @@
 # Assignment 9
 
-Submission deadline: Dec 15, 23.59
+Submission deadline: Dec 16, 23.59
 
 Instructions:
 1. Find a bad data visualization example from real life (e.g., from papers, newspapers, social media, or the  web), like the examples we discussed in the last two weeks.
